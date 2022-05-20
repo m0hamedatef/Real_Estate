@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:hotel_booking/theme/color.dart';
+import 'package:hotel_booking/utils/generate_keies.dart';
 class SellerScreen extends StatefulWidget {
   const SellerScreen({ Key? key }) : super(key: key);
   
@@ -72,17 +73,17 @@ class _SellerScreenState extends State<SellerScreen> {
         onStepTapped: (step) => setState(() {
           currentStep= step;
         }),
-        controlsBuilder: (context, {onStepCancel, onStepContinue}) {
+        controlsBuilder: (context, ControlsDetails details) {
          final isLastStep = currentStep == getSteps().length-1;
           return Container(
             margin: EdgeInsets.only(top: 0),
             child: Row(
               children: [
                 Expanded(child: ElevatedButton(child: Text(isLastStep ?'Comfirm' : 'Next'),
-                 onPressed: onStepContinue,)),
+                 onPressed: details.onStepContinue,)),
                 SizedBox(width: 12,),
                 if(currentStep !=0)
-                Expanded(child: ElevatedButton(child: Text('Back'), onPressed: onStepCancel,))
+                Expanded(child: ElevatedButton(child: Text('Back'), onPressed: details.onStepCancel,))
               ],
             ),
           );
@@ -142,7 +143,7 @@ class _SellerScreenState extends State<SellerScreen> {
                 padding: EdgeInsets.only(left: 10, right: 10),
                 child:  SingleChildScrollView(
         
-          child:Form( key: _formkey, child: SingleChildScrollView(child: Column(children: [
+          child:Form( key: RIKeys.riKey3, child: SingleChildScrollView(child: Column(children: [
             TextField( cursorColor:greenO ,
             controller: First_Name,
              decoration: InputDecoration( labelText: 'First Name', labelStyle: TextStyle(color: greenO, fontSize: 12 )),),
@@ -172,7 +173,7 @@ class _SellerScreenState extends State<SellerScreen> {
                     children: [
                       SingleChildScrollView(
           
-            child:Form( key: _formkey, child: SingleChildScrollView( child: Column(children: [
+            child:Form( key: RIKeys.riKey4, child: SingleChildScrollView( child: Column(children: [
                TextField( cursorColor:greenO ,
               controller: Address,
                decoration: InputDecoration( labelText: 'Address', labelStyle: TextStyle(color: greenO, fontSize: 12 )),),

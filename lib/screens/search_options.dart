@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:hotel_booking/screens/root_app.dart';
 import 'package:hotel_booking/screens/search.dart';
 import 'package:hotel_booking/theme/color.dart';
+import 'package:hotel_booking/utils/generate_keies.dart';
 
 class SearchOptions extends StatefulWidget {
   const SearchOptions({ Key? key }) : super(key: key);
@@ -51,7 +52,7 @@ class _SearchOptionsState extends State<SearchOptions> {
                   width: 300,
                   child:  SingleChildScrollView(
         
-          child:Form( key: _formkey, child: SingleChildScrollView(child: Column(children: [
+          child:Form( key: RIKeys.riKey2, child: SingleChildScrollView(child: Column(children: [
             TextFormField( cursorColor:greenO ,controller: location, readOnly: true,
               decoration: InputDecoration(labelText: 'City', labelStyle: TextStyle(color: Color(0xFF388E3C), fontSize: 12 ),
               hintText: '$_selectedCity', hintStyle: TextStyle(color: Colors.black, fontSize: 12),
