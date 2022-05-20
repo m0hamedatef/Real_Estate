@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hotel_booking/theme/color.dart';
+import 'package:hotel_booking/utils/generate_keies.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -52,7 +53,7 @@ class _LogInState extends State<LogIn> {
         
           child:Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: Form( key: _formkey, child: SingleChildScrollView(child: Column(children: [
+            child: Form( key: RIKeys.riKey1, child: SingleChildScrollView(child: Column(children: [
               TextField( cursorColor:greenO ,
               controller: First_Name,
                decoration: InputDecoration( labelText: 'First Name', labelStyle: TextStyle(color: greenO, fontSize: 12 )),),
