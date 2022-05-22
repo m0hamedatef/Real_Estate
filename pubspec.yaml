@@ -21,6 +21,7 @@ dependencies:
   get_storage: ^2.0.3
   get: ^4.3.8
   url_launcher: ^6.1.0
+  flutter_bloc: ^8.0.1
   
   
 

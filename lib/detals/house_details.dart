@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:hotel_booking/model/house.dart';
+import 'package:hotel_booking/model/house_model.dart';
 import 'package:hotel_booking/theme/color.dart';
 
 
 bool isFavorited= false;
 class HouseDetails extends StatefulWidget {
-  final House house;
+  final HouseModel houseModel;
 
-  HouseDetails(this.house);
+  HouseDetails(this.houseModel);
 
   @override
   _HouseDetailsState createState() => _HouseDetailsState();
@@ -37,35 +38,32 @@ class _HouseDetailsState extends State<HouseDetails> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                  '${widget.house.date} hours ago',
+                      '${widget.houseModel.date} hours ago',
                   style: TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 10,), 
-                Text(
-                      widget.house.name,
+                    SizedBox(height: 10),
+                    Text(
+                      widget.houseModel.name,
                       style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
+                    SizedBox(height: 10),
                     Text(
-                      '${widget.house.price.toStringAsFixed(1)} \L.E.',
+                      // '${widget.houseModel.price.toStringAsFixed(1)} \L.E.',
+                      '${widget.houseModel.price}',
                       style: TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(
-                      height: 5,
-                    ),
+                    SizedBox(height: 5),
                     Text(
-                     widget.house.address,
+                      '${widget.houseModel.address}',
                       style: TextStyle(
                         fontSize: 15,
                         color: Colors.black.withOpacity(0.4),
@@ -74,16 +72,15 @@ class _HouseDetailsState extends State<HouseDetails> {
                     ),
                   ],
                 ),
-                
                 Column(
                   children: [
                     InkWell(
                       onTap: () {},
                       child: Icon(Icons.place_outlined, color: greenO, size: 30,)
                     ),
-                    SizedBox(height: 10,),
-                     Text(
-                     widget.house.location,
+                    SizedBox(height: 10),
+                    Text(
+                     widget.houseModel.location,
                       style: TextStyle(
                         fontSize: 15,
                         color: Colors.black.withOpacity(0.4),
@@ -92,7 +89,6 @@ class _HouseDetailsState extends State<HouseDetails> {
                     ),
                   ],
                 ),
-               
               ],
             ),
           ),
@@ -130,7 +126,7 @@ class _HouseDetailsState extends State<HouseDetails> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                         widget.house.sqMeter.toString(),
+                          '${widget.houseModel.sqMeter}',
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -167,15 +163,13 @@ class _HouseDetailsState extends State<HouseDetails> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          widget.house.bedRooms.toString(),
+                          '${widget.houseModel.bedRooms}',
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(
-                          height: 10,
-                        ),
+                        SizedBox(height: 10),
                         Text(
                           'Bedrooms',
                           style: TextStyle(
@@ -204,7 +198,7 @@ class _HouseDetailsState extends State<HouseDetails> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          widget.house.bathRooms.toString(),
+                          '${widget.houseModel.bathRooms}',
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -224,6 +218,7 @@ class _HouseDetailsState extends State<HouseDetails> {
                     ),
                   ),
                 ),
+                //TODO don't
                 Padding(
                   padding: EdgeInsets.only(
                     left: 30,
@@ -241,7 +236,7 @@ class _HouseDetailsState extends State<HouseDetails> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                         widget.house.garages.toString(),
+                          '${widget.houseModel.garages}',
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -288,15 +283,14 @@ class _HouseDetailsState extends State<HouseDetails> {
                           height: 10,
                         ),
                         Text(
-                          widget.house.view.toString(),
+                          // widget.house.view.toString(),
+                          '${widget.houseModel.view}',
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
                           textAlign: TextAlign.center,
                         ),
-                        
-                        
                       ],
                     ),
                   ),
@@ -328,15 +322,14 @@ class _HouseDetailsState extends State<HouseDetails> {
                           height: 10,
                         ),
                         Text(
-                          widget.house.seller.toString(),
+                          // widget.house.seller.toString(),
+                          '${widget.houseModel.seller}',
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
                            textAlign: TextAlign.center,
                         ),
-                        
-                        
                       ],
                     ),
                   ),
@@ -369,15 +362,13 @@ class _HouseDetailsState extends State<HouseDetails> {
                           height: 10,
                         ),
                         Text(
-                          widget.house.payment_method.toString(),
+                          '${widget.houseModel.paymentMethod}',
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
                            textAlign: TextAlign.center,
                         ),
-                        
-                       
                       ],
                     ),
                   ),
@@ -392,7 +383,7 @@ class _HouseDetailsState extends State<HouseDetails> {
               bottom: 30* 4,
             ),
             child: Text(
-              widget.house.description,
+              widget.houseModel.description,
               style: TextStyle(
                 color: Colors.black.withOpacity(0.4),
                 height: 1.5,

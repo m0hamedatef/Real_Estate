@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:hotel_booking/model/house_model.dart';
 import 'package:hotel_booking/theme/color.dart';
 
 class CityItem extends StatelessWidget {
-  CityItem({Key? key, required this.data, this.isSelected = false, this.onTap})
+
+  final CityModel cityModel;
+  CityItem({Key? key, required this.cityModel, this.isSelected = false, this.onTap})
       : super(key: key);
-  final data;
+  // final data;
   final bool isSelected;
   final GestureTapCallback? onTap;
 
@@ -32,7 +35,7 @@ class CityItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              data["name"],
+              cityModel.name,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(

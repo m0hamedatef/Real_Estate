@@ -1,13 +1,12 @@
+import 'dart:developer';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hotel_booking/model/house.dart';
+import 'package:hotel_booking/model/house_model.dart';
 import 'package:hotel_booking/screens/city.dart';
-import 'package:hotel_booking/screens/favorite_screen.dart';
 import 'package:hotel_booking/screens/property_details.dart';
 import 'package:hotel_booking/theme/color.dart';
-import 'package:hotel_booking/utils/data.dart';
-import 'package:hotel_booking/utils/data2.dart';
 import 'package:hotel_booking/widgets/city_item.dart';
 import 'package:hotel_booking/widgets/feature_item.dart';
 import 'package:hotel_booking/widgets/notification_box.dart';
@@ -23,10 +22,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-   
-   
-   
-   
   @override
 
   Widget build(BuildContext context) {
@@ -88,7 +83,7 @@ class _HomePageState extends State<HomePage> {
                     });
               });
             },
-          )
+          ),
         ],
       ),
     );
@@ -176,20 +171,19 @@ class _HomePageState extends State<HomePage> {
         viewportFraction: .75,
       ),
       items: List.generate(
-        features.length,
+        HousesData.featuredHouses.length,
         (index) => FeatureItem(
-          data: features[index],
+          houseModel: HousesData.featuredHouses[index],
           onTapFavorite: () {
             setState(() {
-              features[index]['is_favorited']= !features[index]['is_favorited'];
+              HousesData.featuredHouses[index].isFavorite =  !HousesData.featuredHouses[index].isFavorite;
                });
-              
-                features[index]["is_favorited"] ?  Favorite.favoriteDataList.add(features[index]) :
-                 Favorite.favoriteDataList.remove(Favorite.favoriteDataList[index]);
-               
-             
+             HousesData.featuredHouses[index].isFavorite ?  HousesData.favoritesHouses.add(HousesData.featuredHouses[index]):
+             HousesData.favoritesHouses.remove(HousesData.featuredHouses[index]);
           },
-          onTap:()=> Get.to(DetailsScreen(house: houseList[index])),
+          onTap:() {
+            Get.to(DetailsScreen(houseModel: HousesData.featuredHouses[index]));
+          },
         ),
       ),
     );
@@ -202,12 +196,14 @@ class _HomePageState extends State<HomePage> {
       scrollDirection: Axis.horizontal,
       child: Row(
         children: List.generate(
-          recommends.length,
+          HousesData.recommendsHouses.length,
           (index) => Padding(
             padding: const EdgeInsets.only(right: 10),
             child: RecommendItem(
-              data: recommends[index],
-              onTap:()=> Get.to(DetailsScreen(house: recommendedList[index]))
+              houseModel: HousesData.recommendsHouses[index],
+              onTap:() {
+                Get.to(DetailsScreen(houseModel: HousesData.recommendsHouses[index]));
+              }
             ),
           ),
         ),
@@ -221,12 +217,14 @@ class _HomePageState extends State<HomePage> {
       scrollDirection: Axis.horizontal,
       child: Row(
         children: List.generate(
-          cities.length,
+          CitiesData.cities.length,
           (index) => Padding(
             padding: const EdgeInsets.only(right: 8),
             child: CityItem(
-              data: cities[index],
-              onTap: ()=> Get.to(CityScreen(house: cityList[index]))
+              cityModel: CitiesData.cities[index],
+              onTap: (){
+                Get.to(CityScreen(houseModel: HousesData.cityHouses[index]));
+              },
             ),
           ),
         ),

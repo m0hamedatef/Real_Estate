@@ -7,40 +7,35 @@ import 'package:hotel_booking/utils/data.dart';
 import 'package:hotel_booking/widgets/custom_image.dart';
 import 'package:hotel_booking/widgets/setting_item.dart';
 
-class SettingPage extends StatefulWidget {
- 
+class SettingPage extends StatelessWidget {
   const SettingPage({Key? key}) : super(key: key);
-
-  @override
-  _SettingPageState createState() => _SettingPageState();
-}
-
-class _SettingPageState extends State<SettingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: appBgColor,
-
-        body: CustomScrollView(
-          slivers: [
-            SliverAppBar(
-              backgroundColor: appBarColor,
-              pinned: true,
-              snap: true,
-              floating: true,
-              leading:    Icon(Icons.settings,
-                color: greenO,
-                size: 22,),
-              title: getAppBar(),
+      backgroundColor: appBgColor,
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            backgroundColor: appBarColor,
+            pinned: true,
+            snap: true,
+            floating: true,
+            leading: Icon(
+              Icons.settings,
+              color: greenO,
+              size: 22,
             ),
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (context, index) => buildBody(),
-                childCount: 1,
-              ),
-            )
-          ],
-        ));
+            title: getAppBar(),
+          ),
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+                  (context, index) => buildBody(context: context),
+              childCount: 1,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget getAppBar() {
@@ -48,13 +43,10 @@ class _SettingPageState extends State<SettingPage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-         
           Expanded(
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-              
-             
                 Text(
                   "Setting",
                   style: TextStyle(
@@ -65,13 +57,14 @@ class _SettingPageState extends State<SettingPage> {
               ],
             ),
           ),
-        
         ],
       ),
     );
   }
 
-  Widget buildBody() {
+  Widget buildBody({
+  required BuildContext context,
+}) {
     return SingleChildScrollView(
       padding: EdgeInsets.only(right: 20, top: 10),
       child: Column(
@@ -140,7 +133,7 @@ class _SettingPageState extends State<SettingPage> {
             leadingIcon: Icons.logout_outlined,
             leadingIconColor: Colors.grey.shade400,
             onTap: () {
-              showConfirmLogout();
+              showConfirmLogout(context: context);
             },
           ),
           SizedBox(height: 10),
@@ -149,7 +142,9 @@ class _SettingPageState extends State<SettingPage> {
     );
   }
 
-  showConfirmLogout() {
+  showConfirmLogout({
+    required BuildContext context,
+}) {
     showCupertinoModalPopup(
       context: context,
       builder: (context) => CupertinoActionSheet(
@@ -173,3 +168,4 @@ class _SettingPageState extends State<SettingPage> {
     );
   }
 }
+
