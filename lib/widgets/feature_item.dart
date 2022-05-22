@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:hotel_booking/model/house_model.dart';
 import 'package:hotel_booking/theme/color.dart';
 import 'package:hotel_booking/widgets/favorite_box.dart';
 import 'custom_image.dart';
 
 class FeatureItem extends StatelessWidget {
-  FeatureItem(
-      {Key? key,
-      this.data,
-      this.width = 280,
-      this.height = 300,
-      this.onTap,
-      this.onTapFavorite, this.id})
-      : super(key: key);
-  final data;
+  final HouseModel houseModel;
   final  id;
   final double width;
   final double height;
   final GestureTapCallback? onTapFavorite;
   final GestureTapCallback? onTap;
+
+  FeatureItem(
+      {Key? key,
+      required this.houseModel,
+      this.width = 280,
+      this.height = 300,
+      this.onTap,
+      this.onTapFavorite,
+      this.id})
+      : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +48,7 @@ class FeatureItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CustomImage(
-              data["image"],
+              houseModel.imageUrl,
               width: double.infinity,
               height: 150,
               radius: 15,
@@ -56,7 +60,7 @@ class FeatureItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    data["name"],
+                    houseModel.name,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
@@ -64,9 +68,7 @@ class FeatureItem extends StatelessWidget {
                         color: textColor,
                         fontWeight: FontWeight.w600),
                   ),
-                  SizedBox(
-                    height: 5,
-                  ),
+                  SizedBox(height: 5),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -74,7 +76,7 @@ class FeatureItem extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            data["type"],
+                            houseModel.type,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(color: labelColor, fontSize: 13),
@@ -83,7 +85,7 @@ class FeatureItem extends StatelessWidget {
                             height: 8,
                           ),
                           Text(
-                            data["price"],
+                            houseModel.price,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
@@ -96,13 +98,13 @@ class FeatureItem extends StatelessWidget {
                       FavoriteBox(
                         size: 16,
                         onTap: onTapFavorite,
-                        isFavorited: data["is_favorited"],
+                        isFavorited: houseModel.isFavorite,
                       )
                     ],
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:get/get.dart';
+import 'package:hotel_booking/model/house_model.dart';
 import 'package:hotel_booking/screens/favorite_screen.dart';
 import 'package:hotel_booking/screens/property_details.dart';
 import 'package:hotel_booking/screens/search_options.dart';
@@ -88,22 +89,20 @@ class _SearchPageState extends State<SearchPage> {
         viewportFraction: .75,
       ),
       items: List.generate(
-        features.length,
+        HousesData.featuredHouses.length,
         (index) => FeatureItem(
-          data: features[index],
+          houseModel: HousesData.featuredHouses[index],
           onTapFavorite: () {
-            setState(() {
-              features[index]['is_favorited']= !features[index]['is_favorited'];
-           
-              
-                  
-              
-            });
-             features[index]["is_favorited"] ?  Favorite.favoriteDataList.add(features[index]) :
-                 Favorite.favoriteDataList.remove(Favorite.favoriteDataList[index]);
-               
+            // setState(() {
+            //   features[index]['is_favorited']= !features[index]['is_favorited'];
+            // });
+            //  features[index]["is_favorited"] ?  Favorite.favoriteDataList.add(features[index]) :
+            //      Favorite.favoriteDataList.remove(Favorite.favoriteDataList[index]);
+            //
           },
-          onTap: ()=> Get.to(DetailsScreen(house: houseList[index])),
+          onTap: () {
+            // Get.to(DetailsScreen(house: houseList[index]));
+          },
         ),
       ),
     );

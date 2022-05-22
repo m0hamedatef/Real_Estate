@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:hotel_booking/model/house_model.dart';
 import 'package:hotel_booking/theme/color.dart';
 import 'custom_image.dart';
 
 class RecommendItem extends StatelessWidget {
-  RecommendItem({Key? key, required this.data, this.onTap}) : super(key: key);
-  final data;
+  final HouseModel houseModel;
   final GestureTapCallback? onTap;
+  RecommendItem({Key? key, required this.houseModel, this.onTap}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,7 @@ class RecommendItem extends StatelessWidget {
           child: Row(
             children: [
               CustomImage(
-                data["image"],
+                houseModel.imageUrl,
                 radius: 15,
                 height: 80,
               ),
@@ -42,7 +44,7 @@ class RecommendItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      data["name"],
+                      houseModel.name,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
@@ -54,7 +56,7 @@ class RecommendItem extends StatelessWidget {
                       height: 5,
                     ),
                     Text(
-                      data["type"],
+                      houseModel.type,
                       style: TextStyle(fontSize: 12, color: labelColor),
                     ),
                     SizedBox(
@@ -72,12 +74,12 @@ class RecommendItem extends StatelessWidget {
                         ),
                         Expanded(
                           child: Text(
-                            data["rate"],
+                            houseModel.rate,
                             style: TextStyle(fontSize: 12, color: Colors.grey),
                           ),
                         ),
                         Text(
-                          data["price"],
+                          houseModel.price,
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w500,
